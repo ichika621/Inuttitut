@@ -1,0 +1,5 @@
+# scratch / working files not needed to run the game
+scratch/
+*.pyc
+__pycache__/
+.DS_Store
