@@ -42,8 +42,8 @@ unlocks more villagers, a word book (図鑑) tracks each expression from
 "found" to "can use", and a campfire runs 3–5 minute reviews that put weak
 items first. Skill tree: 聞き取り / 会話 / 読み書き / 文法.
 
-The game is bilingual (English / Japanese; English is the default outside
-Japanese browsers), and its start screen has a sourced **"What is Inuttitut?"**
+The game is bilingual (English / Japanese; it always starts in English and
+remembers the player's choice), and its start screen has a sourced **"What is Inuttitut?"**
 page: who speaks it, how it is doing today, what it is related to, and what it
 is like.
 

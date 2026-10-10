@@ -123,7 +123,7 @@
   };
   function initial() {
     try { var v = localStorage.getItem(KEY); if (v === "en" || v === "ja") return v; } catch (e) {}
-    return /^ja/i.test(navigator.language || "") ? "ja" : "en";
+    return "en"; // English first for everyone; Japanese is one click away (top-right button)
   }
   var L = window.L10N = { lang: initial() };
   L.set = function (v) { L.lang = v; try { localStorage.setItem(KEY, v); } catch (e) {} document.documentElement.lang = v; };
