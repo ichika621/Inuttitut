@@ -1,0 +1,137 @@
+/* Interface language (English / Japanese). Inuttitut is never translated here —
+   it always comes from LEX (example bank) or STORY.glossary. */
+(function () {
+  "use strict";
+  var KEY = "inuttitut-rpg-lang";
+  var S = {
+    en: {
+      tagline: "Labrador Inuttitut · a life-sim RPG about getting a language back", gameTitle: "Words of the Snow Village",
+      cont: "Continue", newGame: "New game", howTo: "How to play", aboutLang: "What is Inuttitut?", aboutGame: "About this game",
+      titleNote: "Every Inuttitut line in the game comes from the course handouts and official sources. Nothing is made up.",
+      confirmNew: "Erase the saved progress and start over?", welcomeBack: "Welcome back.",
+      langBtn: "日本語",
+      skill_listen: "Listening", skill_speak: "Speaking", skill_rw: "Reading & writing", skill_gram: "Grammar",
+      st0: "Not found", st1: "Found", st2: "Understood", st3: "Can use",
+      levelUp: "{s} reached Lv{n}!", levelUpSpeak: " More people may talk to you now.",
+      questDone: "Quest complete: {t}", eastOpen: " — The road to the east shore is open!", northOpen: " — The road to the northern airstrip is open!",
+      newQuest: "New quest: {t}", allDone: "All quests complete!", keepGoing: "Keep reviewing at the camp and completing the word book",
+      book: "Word book", quests: "Quests", bookCount: "Words {d}/{t}",
+      gateEast: "A snowdrift blocks the way. Learn to ask questions from Hulda and the road east will open.",
+      gateNorth: "A snowdrift blocks the way. Learn places and travel from Rita and the road north will open.",
+      driftEast: "A snowdrift. Beyond it is the east shore.", driftNorth: "A snowdrift. Beyond it is the northern airstrip.",
+      dogs: "Grandma's dogs. They're wagging their tails. Remember how many there are.",
+      playModel: "Play a speaker's recording", noRec: "No recording yet (you can add a speaker's recording in the word book)",
+      noRecShort: "no recording", noAudioToast: "No audio for this one yet. Use '🎙 Record speaker' in the word book to have a speaker record it.",
+      meaningBtn: "Meaning", next: "Next", chooseReply: "Choose your reply (♪ to listen).", thinkAgain: "Think again.",
+      quizWrong: "Not quite. Check the last line with ♪ or the meaning button, then try again.",
+      lockedTalk1: "({n} said something to you, but you can't answer well yet…)",
+      lockedTalk2: "You can talk to {n} at Speaking Lv{l}. Raise your Speaking skill by reviewing at the camp or chatting with villagers.",
+      whatDo: "What will you do with {n}?", talk: "Talk", learn: "Learn: {u}", bye: "Goodbye",
+      exMeaning: "Read: what does it mean?", exProduce: "Speak: how do you say it in Inuttitut?", exType: "Write: type it in Inuttitut",
+      exDrill: "Grammar: which form is right?", exListen: "Listen: what was said?", listenBtn: "♪ Listen",
+      correct: "◎ Correct!", answerIs: "△ The answer is", nextBtn: "Next ▶", hint: "Hint", check: "Check",
+      typeHelp: "You can type aa for â. k and K are different sounds, so keep them apart (a capital at the start doesn't matter).",
+      typeLabel: "Type in Inuttitut",
+      grammarPoints: "Grammar points (from the course handouts)", studyCards: "Study the cards ({n})", practice: "Practise", quit: "Quit",
+      prev: "◀ Back", nextCard: "Next ▶", toPractice: "Practise ▶", practiceN: "Practice {i} / {n}",
+      passed: "Passed!", almost: "Almost!", passedMsg: "You finished this unit. The expressions you met are in your word book, and you can review them at the camp.",
+      failMsg: "You need 70% to pass. Look over the cards and try again.", again: "Try again", seeCards: "See the cards", close: "Close",
+      lessonWhere: "Lesson: {u}", talkWhere: "Conversation",
+      campTitle: "🔥 Review at the camp",
+      campIntro: "Warm up by the fire and review the words you've met, in 3–5 minutes. Weak expressions and ones due for review come first.",
+      campMet: "Met", campDue: "Due", campWeak: "Weak", campStart: "Start (up to 8 questions · 5 min)", campNone: "You haven't met any expressions yet. Go and talk to someone.",
+      campHead: "Camp review {i} / {n} · about {m} min left", campDone: "Nice work!", campSummary: "{m} min {s} s. Expressions you missed will come first next time.", oneMore: "One more round",
+      tabBook: "Word book", tabSkills: "Skills", tabQuests: "Quests", tabGrammar: "Grammar", tabAbout: "Sources & settings",
+      bookHead: "Word book — {d} / {t} complete ({p}%) · Stages: not found → found → understood → <b>can use</b> (you wrote it yourself or used it in conversation)",
+      fAll: "All", fReview: "To review", fTodo: "Not complete", unknown: "???", notMet: "Not met yet",
+      metAt: "Met at: {w}", spelling: "Spelling & sound: {h}", recModel: "🎙 Record speaker", recSelf: "🎙 My voice", playSelf: "▶ My voice",
+      okNg: "{st} · right {o} / missed {n}",
+      recConfirm: "Please ask an Inuttitut speaker (for example, your teacher) to record the model.\nIt is saved only in this browser. Start recording? (up to 6 seconds; press again to stop)",
+      stop: "■ Stop", recSaved: "Recording saved.", recDenied: "Microphone access was not allowed.", recUnsupported: "This browser can't record audio.", recError: "The recording could not be saved.",
+      skillsIntro: "Skills grow not only by picking the right answer, but by understanding audio (Listening), writing it yourself (Reading & writing) and using it in conversation (Speaking).",
+      notStarted: "Not started yet", grammarLocked: "At Grammar Lv2 you can read the grammar tables from the course handouts (raise it with lessons and grammar drills).",
+      grammarLater: "Grammar for units you haven't reached yet will appear as you progress.",
+      settings: "Settings", sound: "Sound effects: {v}", on: "ON", off: "OFF", trans: "Translations: {v}", slow: "Slow playback: {v}", slowLock: " (Listening Lv2)",
+      reset: "Delete save and start over", resetConfirm: "Delete the progress saved in this browser and start over? (Recordings are kept.)",
+      transBoth: "Japanese + English", transJa: "Japanese", transEn: "English",
+      aboutGameHtml: "<h3>The language in this game</h3><p>This game teaches <b>Inuttitut (Inuttut, Nunatsiavummiutut)</b>, the Inuit language of Nunatsiavut in northern Labrador, Canada. Standard Inuktitut (Nunavut and elsewhere) has different endings and spelling, so it is not mixed in.</p><p>Every Inuttitut sentence in the game comes from the example bank of the 'Inuttitut A2 Example Sentences' document ({n} entries: {p} printed in the course handouts, {tt} from course paradigm tables, {r} built only from course forms and rules, {w} from web sources). Nothing new is made up. Each entry shows its source in the word book and on the lesson cards.</p>",
+      sourcesH: "Sources",
+      audioHtml: "<h3>About audio</h3><p>Pronunciation is not synthesised — a computer voice reading Inuttitut would teach the wrong sounds. In the word book, '🎙 Record speaker' lets a speaker record a model; then ♪ playback and listening questions become available. Recordings are saved only in this browser.</p>",
+      cultureHtml: "<h3>About culture</h3><p>The village and its people are fictional; they do not portray a particular community or real people. All the art was drawn in code for this game. Before publishing, have the content checked by Inuttitut speakers, educators and the Nunatsiavut community.</p>",
+      helpHtml: "<h3>Controls</h3><ul><li>Move: arrow keys / WASD (on phones, the d-pad at the bottom left)</li><li>Talk · examine · next: Space / Enter / Z (on phones, the A button). You can also click or tap the square next to you.</li><li>Word book: N key / 'Word book' at top right</li><li>Close: Esc / X</li></ul><h3>Goals</h3><ul><li>Talk to people and win back everyday words. The person with <b>!</b> is your next goal (they also blink on the minimap).</li><li>Words open roads: greetings → the village / questions → the east shore / places & travel → the northern airstrip.</li><li>As your Speaking skill grows, more people will talk to you (people with <b>…</b> can't yet).</li><li>Review for 3–5 minutes at the campfire. Weak expressions come first.</li><li>An entry becomes 'can use' when you write it yourself or use it in conversation.</li></ul>",
+      aboutLangSources: "Sources", aboutLangNote: "Numbers in brackets refer to the sources below.",
+      partsOf: "Parts:", examplesH: "Examples"
+    },
+    ja: {
+      tagline: "Labrador Inuttitut ・ ことばを取りもどす生活 RPG", gameTitle: "雪の村のことば",
+      cont: "つづきから", newGame: "はじめから", howTo: "遊び方", aboutLang: "イヌティトゥットとは?", aboutGame: "この作品について",
+      titleNote: "ゲームの Inuttitut はすべて授業資料と公式資料から。新しく作った文は使っていません。",
+      confirmNew: "保存されている進み具合を消して、はじめからにしますか?", welcomeBack: "おかえりなさい。",
+      langBtn: "English",
+      skill_listen: "聞き取り", skill_speak: "会話", skill_rw: "読み書き", skill_gram: "文法",
+      st0: "未発見", st1: "発見", st2: "理解", st3: "使える",
+      levelUp: "{s} が Lv{n} になった!", levelUpSpeak: " 話せる人が増えたかも。",
+      questDone: "クエスト完了: {t}", eastOpen: " ─ 東の海辺への道が開いた!", northOpen: " ─ 北の飛行場への道が開いた!",
+      newQuest: "新しいクエスト: {t}", allDone: "すべてのクエストを達成!", keepGoing: "キャンプでの復習と図鑑の完成を続けよう",
+      book: "図鑑", quests: "クエスト", bookCount: "図鑑 {d}/{t}",
+      gateEast: "雪の吹きだまりで通れない。Hulda に質問のしかたを教わると、東への道が開く。",
+      gateNorth: "雪の吹きだまりで通れない。Rita に場所と移動の言い方を教わると、北への道が開く。",
+      driftEast: "雪の吹きだまり。この先は東の海辺。", driftNorth: "雪の吹きだまり。この先は北の飛行場。",
+      dogs: "おばあちゃんの犬だ。しっぽを振っている。何匹いるか覚えておこう。",
+      playModel: "お手本の音声を再生", noRec: "まだ録音がありません(図鑑で話者の録音を追加できます)",
+      noRecShort: "録音なし", noAudioToast: "この表現にはまだ音声がありません。図鑑の「🎙 お手本を録音」で話者に録音してもらえます。",
+      meaningBtn: "意味", next: "次へ", chooseReply: "返事を選ぼう(♪で聞ける)", thinkAgain: "もう一度考えてみよう。",
+      quizWrong: "ちがうみたい。直前のせりふを♪や意味ボタンで確かめてから、もう一度選ぼう。",
+      lockedTalk1: "({n} が何か話しかけてくれたけれど、まだうまく返せない……)",
+      lockedTalk2: "会話スキルが Lv{l} になると {n} と話せるようになる。キャンプのたき火で復習したり、村の人と話したりして会話スキルを上げよう。",
+      whatDo: "{n} と何をする?", talk: "話す", learn: "教わる: {u}", bye: "さようなら",
+      exMeaning: "読む: 意味は?", exProduce: "話す: Inuttitut でどう言う?", exType: "書く: Inuttitut で書こう",
+      exDrill: "文法: 正しい形は?", exListen: "聞く: 何と言った?", listenBtn: "♪ 聞く",
+      correct: "◎ せいかい!", answerIs: "△ 正解は", nextBtn: "次へ ▶", hint: "ヒント", check: "答え合わせ",
+      typeHelp: "â は aa と入力しても OK。k と K は別の音なので区別してね(文頭の大文字は気にしなくてよい)。",
+      typeLabel: "Inuttitut で入力",
+      grammarPoints: "文法のポイント(授業資料より)", studyCards: "カードで学ぶ({n}枚)", practice: "練習する", quit: "やめる",
+      prev: "◀ 前", nextCard: "次 ▶", toPractice: "練習へ ▶", practiceN: "練習 {i} / {n}",
+      passed: "合格!", almost: "もう少し!", passedMsg: "このユニットを修了しました。出会った表現は図鑑に記録され、キャンプで復習できます。",
+      failMsg: "70% 以上で修了です。カードを見直してから、もう一度挑戦しよう。", again: "もう一度", seeCards: "カードを見る", close: "閉じる",
+      lessonWhere: "レッスン: {u}", talkWhere: "会話",
+      campTitle: "🔥 キャンプで復習",
+      campIntro: "たき火で温まりながら、出会ったことばを 3〜5 分で復習しよう。苦手な表現・復習の時期が来た表現から順に出題します。",
+      campMet: "出会った表現", campDue: "復習の時期", campWeak: "苦手", campStart: "復習をはじめる(最大 8 問・5 分)", campNone: "まだ出会った表現がありません。村の人と話してみよう。",
+      campHead: "キャンプ復習 {i} / {n} ・ 残り約 {m} 分", campDone: "おつかれさま!", campSummary: "{m} 分 {s} 秒。まちがえた表現は、次回のキャンプで先に出てきます。", oneMore: "もう一回",
+      tabBook: "図鑑", tabSkills: "スキル", tabQuests: "クエスト", tabGrammar: "文法表", tabAbout: "資料・設定",
+      bookHead: "<b>ことばの図鑑</b> 完成 {d} / {t}({p}%) ・ 状態: 未発見 → 発見 → 理解 → <b>使える</b>(自分で書けた/会話で使えた)",
+      fAll: "すべて", fReview: "要復習", fTodo: "未完成", unknown: "？？？", notMet: "まだ出会っていない",
+      metAt: "出会った場所: {w}", spelling: "綴りと発音: {h}", recModel: "🎙 お手本を録音", recSelf: "🎙 自分の声", playSelf: "▶ 自分の声",
+      okNg: "{st} ・ 正解 {o} / ミス {n}",
+      recConfirm: "お手本の録音は、Inuttitut の話者(先生など)に録音してもらってください。\nこのブラウザの中だけに保存されます。録音をはじめますか?(最大 6 秒・もう一度押すと停止)",
+      stop: "■ 停止", recSaved: "録音を保存しました。", recDenied: "マイクの使用が許可されませんでした。", recUnsupported: "このブラウザは録音に対応していません。", recError: "録音を保存できませんでした。",
+      skillsIntro: "スキルは、正解を当てるだけでなく、音声を聞いて理解したり(聞き取り)、自分で書いたり(読み書き)、会話で使ったり(会話)すると伸びます。",
+      notStarted: "まだ始まっていない", grammarLocked: "文法スキルが Lv2 になると、授業資料の文法表が読めるようになります(レッスンや文法ドリルで上がります)。",
+      grammarLater: "まだ始まっていないユニットの文法は、クエストを進めると表示されます。",
+      settings: "設定", sound: "効果音: {v}", on: "ON", off: "OFF", trans: "訳: {v}", slow: "ゆっくり再生: {v}", slowLock: "(聞き取り Lv2)",
+      reset: "セーブを消して最初から", resetConfirm: "このブラウザに保存された進み具合を消して、最初からはじめますか?(録音は消えません)",
+      transBoth: "日本語+English", transJa: "日本語", transEn: "English",
+      aboutGameHtml: "<h3>このゲームのことば</h3><p>対象: <b>Inuttitut(Inuttut、Nunatsiavummiutut)</b> ─ カナダ・ラブラドール北部 Nunatsiavut のイヌイット語。標準 Inuktitut(Nunavut など)とは語尾や綴りが違うため、混ぜていません。</p><p>ゲームに出てくる Inuttitut の文はすべて「Inuttitut A2 例文集」の例文バンクから引いています(全 {n} 件: 授業資料の原文 {p} / 授業資料の活用表 {tt} / 授業資料の形と規則から作成 {r} / ネット資料 {w})。新しく作った文は使っていません。それぞれの出典は図鑑とレッスンのカードに表示されます。</p>",
+      sourcesH: "出典",
+      audioHtml: "<h3>音声について</h3><p>発音の音声は合成していません(機械の声で Inuttitut を読ませると、間違った発音を覚えてしまうため)。図鑑の「🎙 お手本を録音」で、話者に録音してもらうと、♪ での再生と聞き取り問題が使えるようになります。録音はこのブラウザの中にだけ保存されます。</p>",
+      cultureHtml: "<h3>文化について</h3><p>村と登場人物は架空です。特定のコミュニティや実在の人物を描いたものではありません。絵はすべてこのゲームのためにプログラムで描いたオリジナルです。公開する前に、Inuttitut の話者・教育者・Nunatsiavut のコミュニティに内容を確認してもらうことをおすすめします。</p>",
+      helpHtml: "<h3>操作</h3><ul><li>移動: 矢印キー / WASD(スマホは左下の十字ボタン)</li><li>話す・調べる・次へ: Space / Enter / Z(スマホは A ボタン)。となりのマスをクリック/タップしても話せます</li><li>図鑑・ノート: N キー / 右上の「図鑑」</li><li>閉じる: Esc / X</li></ul><h3>目標</h3><ul><li>村の人と話して、日常のことばを取りもどそう。<b>!</b> のついた人が次の目的です(ミニマップでも点滅します)。</li><li>ことばを覚えると道が開く: あいさつ → 村 / 質問 → 東の海辺 / 場所と移動 → 北の飛行場。</li><li>会話スキルが上がると、話せる人が増えます(<b>…</b> の人はまだ話せない)。</li><li>キャンプのたき火で 3〜5 分の復習。苦手な表現から出題されます。</li><li>図鑑は、表現を自分で書けたり会話で使えたりすると「使える」になって完成に近づきます。</li></ul>",
+      aboutLangSources: "出典", aboutLangNote: "[ ] の記号は下の出典を表します。",
+      partsOf: "部品:", examplesH: "例"
+    }
+  };
+  function initial() {
+    try { var v = localStorage.getItem(KEY); if (v === "en" || v === "ja") return v; } catch (e) {}
+    return /^ja/i.test(navigator.language || "") ? "ja" : "en";
+  }
+  var L = window.L10N = { lang: initial() };
+  L.set = function (v) { L.lang = v; try { localStorage.setItem(KEY, v); } catch (e) {} document.documentElement.lang = v; };
+  L.t = function (k, vars) { var s = (S[L.lang] && S[L.lang][k]) || S.en[k] || k; if (vars) Object.keys(vars).forEach(function (n) { s = s.split("{" + n + "}").join(vars[n]); }); return s; };
+  L.tx = function (o) { return o == null ? "" : typeof o === "string" ? o : (o[L.lang] || o.ja || o.en); };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  // escape a bilingual text and render {{Inuttitut}} marks in italics
+  L.mark = function (o) { return esc(L.tx(o)).replace(/\{\{(.+?)\}\}/g, "<i class='iw'>$1</i>"); };
+  L.plain = function (o) { return L.tx(o).replace(/\{\{(.+?)\}\}/g, "$1"); };
+  document.documentElement.lang = L.lang;
+})();

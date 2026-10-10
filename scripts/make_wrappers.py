@@ -15,4 +15,5 @@ def wrap(json_path, js_path, global_name):
 
 wrap("data/dictionary.json", "data/dictionary.js", "DICTIONARY")
 wrap("data/nouns.json", "data/nouns.js", "NOUNS")
+wrap("data/phrases.json", "data/phrases.js", "PHRASES")
 wrap("data/story.json", "data/story.js", "STORY")

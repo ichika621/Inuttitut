@@ -1,8 +1,16 @@
-# Inuttut Journey — a Labrador Inuit language-learning visual-novel RPG
+# Inuttut Journey — an everyday-use Inuttut app for youth who already know some
 
-A browser-based, character-driven **visual-novel RPG** for learning **Inuttut** —
-the language of the **Labrador Inuit (Nunatsiavut)** — for English speakers. You
-play the first-person protagonist of a Labrador folktale: illustrated story
+A browser-based, character-driven **visual-novel RPG** for **strengthening
+everyday use of Inuttut** — the language of the **Labrador Inuit (Nunatsiavut)**
+— for Inuit youth who already have some existing knowledge of the language. This
+is not an absolute-beginner tourist-phrasebook app: it assumes you can already
+recognise some words, and it's built to help you *use* Inuttut more, in
+engaging, culturally relevant scenes, working toward roughly **CEFR A2** (simple,
+everyday exchanges on familiar topics — not just isolated vocabulary). The goal
+is to **co-design this with Inuit speakers and educators**, not to hand down a
+finished product; see [`docs/co-design-process.md`](docs/co-design-process.md).
+
+You play the first-person protagonist of a Labrador folktale: illustrated story
 beats, **visual-novel conversations** where characters' faces change line to line
 and Inuttut words are taught inline, and turn-based **word battles** that test
 them — all over a fully-synthesised soundtrack.
@@ -13,11 +21,58 @@ them — all over a fully-synthesised soundtrack.
 > validated against the dictionary before use; nothing is invented, translated,
 > or borrowed from another dialect.
 >
-> **Vocabulary is NOUNS ONLY.** Everything taught, collected, and tested is a
-> concrete noun (people, animals, objects, places, natural features), filtered
-> into `data/nouns.json`. Verbs, actions, adjectives, and phrases are never
-> surfaced as learnable words — characters just speak them naturally in English.
-> Act 1 uses the very simplest nouns.
+> **Vocabulary shipped in the current build is NOUNS ONLY** (see below) — a
+> holdover from this app's original absolute-beginner design. That's the main
+> gap against the new A2/everyday-use goal: A2 needs verbs, requests, questions,
+> and everyday functional phrases, not just noun flashcards. `data/phrases.json`
+> (see Step 3c) is the first step toward closing that gap — a **scaffold**,
+> pulling everyday-function words straight from the dictionary (never inventing
+> or combining new Inuttut) and flagged `needs_speaker_review`. It is not yet
+> wired into the game; see [`docs/a2-gap-analysis.md`](docs/a2-gap-analysis.md)
+> for the full inventory and plan.
+
+## Village RPG (`rpg/`) — A1 → A2 life-sim
+
+`rpg/index.html` is a separate, newer game: a top-down pixel-art life simulation
+in which a boy who has forgotten Inuttitut relearns it by living in a snow
+village — greeting people, ordering coffee at the store, counting stars,
+talking about places, weather and time. Language unlocks the map (questions
+open the east shore, places/travel open the north airstrip), the 会話 skill
+unlocks more villagers, a word book (図鑑) tracks each expression from
+"found" to "can use", and a campfire runs 3–5 minute reviews that put weak
+items first. Skill tree: 聞き取り / 会話 / 読み書き / 文法.
+
+The game is bilingual (English / Japanese; English is the default outside
+Japanese browsers), and its start screen has a sourced **"What is Inuttitut?"**
+page: who speaks it, how it is doing today, what it is related to, and what it
+is like.
+
+**Every Inuttitut string in the RPG comes from two files:**
+`scripts/a2_bank.py` (12 units, 194 examples + 16 family words: text printed
+in the INUTTITUT I/II course handouts, forms from the course's paradigm
+tables, sentences built only from course forms + rules with the basis noted,
+and a few lines from the Nunatsiavut Government page and Tusâlanga with URLs),
+and `scripts/rpg_content.py` (quests, conversations, drills, the "What is
+Inuttitut?" page, and a glossary of every other Inuttitut word or word part).
+The build refuses to run if a conversation line, reply, drill or marked word
+is not in the bank or glossary, and `content.js` re-checks at load. English
+explanations live in `scripts/a2_bank_en.py`. No pronunciation audio is
+synthesised: the word book can store a speaker's recording (and the learner's
+own) in the browser's IndexedDB.
+
+```bash
+python scripts/build_rpg_lexicon.py                      # → rpg/lexicon.js + rpg/story.js
+python scripts/build_a2_doc_en.py ../A2_EN.docx          # English reviewer document: every Inuttitut string in the game
+python scripts/build_a2_doc.py ../例文集.docx              # Japanese edition (pip install python-docx)
+```
+
+The English document is written for review by a speaker or teacher: if
+everything in it is correct, the Inuttitut in the game is correct (it includes
+every conversation with accepted/rejected replies, every drill, and the
+glossary).
+
+> The bank includes transcriptions of course handouts. Check with the course
+> instructor before publishing `rpg/` or `scripts/a2_bank.py` publicly.
 
 ## Quick start
 
@@ -61,18 +116,23 @@ js/app.js                      engine: beat-player (VN), battles, SRS, XP, audio
 js/audio.js                    procedural Web-Audio soundtrack (BGM/SFX/ambient)
 data/dictionary.json           parsed dictionary (4577 entries)   ← canonical data
 data/nouns.json                NOUNS-ONLY subset (2983) + simplicity score
+data/phrases.json              everyday-function scaffold (verbs/expressions) — Step 3c, not yet wired into the game
 data/story.json                the 4-act / 17-scene beat graph + embedded noun vocab
-data/*.js                      file://-friendly wrappers (window.DICTIONARY / .NOUNS / .STORY)
+data/*.js                      file://-friendly wrappers (window.DICTIONARY / .NOUNS / .PHRASES / .STORY)
 assets/words/*.svg             word icons (picture-based learning)
 assets/chars/<name>/<expr>.svg character expression sheets + enemy damage-stages
 assets/bg/*.svg                scene backgrounds
 assets/CREDITS.md              art sources, CC0 licence, cultural-review note
 docs/audio-credits.md          audio: procedural, royalty-free, no sacred recordings
 docs/folktale-research.md      Labrador folktale research + sources + caveats
+docs/a2-gap-analysis.md        CEFR A2 can-do inventory vs. current content, function taxonomy, gaps
+docs/curriculum-roadmap.md     stage-by-stage word/grammar path from current content to A2
+docs/co-design-process.md      plan for co-designing with Inuttut speakers & educators
 scripts/extract_pdf.py         PDF → text (PyMuPDF)
 scripts/parse_dictionary.py    text → dictionary.json
 scripts/tag_dictionary.py      adds theme + difficulty + image path to every record
 scripts/build_nouns.py         filters to NOUNS ONLY + simplicity score → nouns.json
+scripts/build_phrases.py       tags everyday-function vocabulary (incl. verbs) → phrases.json
 scripts/make_assets.py         word icons + base sprites/backgrounds
 scripts/make_story_assets.py   expression sheets + story backgrounds + enemy stages
 scripts/build_story.py         builds story.json (validates every word is a noun in the PDF)
@@ -174,6 +234,49 @@ The Act 4 "phrase" battle is a **noun-ordering** round (tap the noun labels in t
 order the English names them) — a recall exercise on independent nouns, not verb
 conjugation and not a constructed sentence.
 
+## Step 3c — Everyday-function scaffold (`scripts/build_phrases.py`)
+
+The nouns-only filter above was the right call for the original absolute-
+beginner build, but it's the main thing standing between this app and the new
+goal (strengthen everyday Inuttut use, toward CEFR A2, for youth who already
+know some words) — A2 needs verbs, requests, feelings, and functional words,
+not just noun flashcards. `build_phrases.py` is a first, additive step:
+
+- Reads `dictionary.json`, skips anything already in `nouns.json`.
+- Classifies each entry into a **function** category (a second axis alongside
+  the existing `theme` tag) — `greetings_social, personal_info,
+  needs_requests, feelings_health, time_weather, place_direction, food_meals,
+  daily_routine, land_activities, actions_general` — chosen to map onto CEFR
+  A2 topic areas; see `docs/a2-gap-analysis.md` for the reasoning.
+- Matching is deliberately strict: against the gloss **head** only (the short
+  lead phrase, parens/trailing clauses stripped), with closed-class words
+  (`yes`, `no`, `please`…) required to match the **whole** head and open-class
+  verbs (`come`, `ask`, `carry`…) allowed to match as the **first** word only.
+  A plain substring search over full glosses was tried first and pulled in
+  false positives ("a loan word **from** English" ≠ personal info); this is
+  the fix.
+- **Never invents or combines Inuttut.** Every record is exactly what's
+  already in the dictionary. Verb entries get a `review_note`: the dictionary
+  gives a citation form, and Inuttut inflects heavily, so that form isn't
+  necessarily what a speaker would actually say — flagged for confirmation.
+- Every record carries `"needs_speaker_review": true`. **Nothing in
+  `data/phrases.json` is validated teaching content yet** — it's a sorted,
+  tagged pool to build real lessons from, not lessons themselves.
+
+**Result: 491 entries** (out of 4577 − 2983 already-noun = 1594 candidates)
+pass the strict filter — `actions_general` 305, `place_direction` 48,
+`needs_requests` 28, `daily_routine` 25, `feelings_health` 25,
+`land_activities` 24, `time_weather` 13, `food_meals` 10, `greetings_social`
+10, `personal_info` 3. The thin categories (`personal_info` especially) are
+expected: the dictionary is a word list, not a phrasebook, so "my name is…" /
+"I live in…" style functional phrases mostly don't exist as single dictionary
+entries and will need a fluent speaker to draft, not a script to extract.
+
+**Not yet wired into the game** — `data/phrases.js` / `window.PHRASES` exists
+but `index.html` and `js/app.js` don't load or use it yet. That's Phase 2/3
+work (new exercise types, SRS redesign) once the content itself has had
+speaker/educator input.
+
 ## Step 3b — The story (4 acts, 17 scenes, `data/story.json`)
 
 Each scene is an ordered list of **beats**: `narr` (inner-voice narration),
@@ -257,10 +360,11 @@ python scripts/extract_pdf.py "English-Inuttut Dictionary.pdf" scratch/raw_full.
 python scripts/parse_dictionary.py scratch/raw_full.txt data/dictionary.json   # 4577
 python scripts/tag_dictionary.py            # theme + difficulty + image (in place)
 python scripts/build_nouns.py               # nouns-only filter → data/nouns.json (2983)
+python scripts/build_phrases.py             # everyday-function scaffold → data/phrases.json (491)
 python scripts/make_assets.py               # word icons + base sprites/backgrounds
 python scripts/make_story_assets.py         # expression sheets + story backgrounds
 python scripts/build_story.py               # validates every taught word is a noun → data/story.json
-python scripts/make_wrappers.py             # regenerate data/*.js wrappers
+python scripts/make_wrappers.py             # regenerate data/*.js wrappers (incl. phrases.js)
 # then bump the ?v= cache tokens in index.html if you re-served an old build
 ```
 Requires `pip install pymupdf` for the extraction step only.

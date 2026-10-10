@@ -287,7 +287,10 @@ meta = {
     "source": "Labrador Virtual Museum — English-Inuttut Dictionary",
     "sourceUrl": "https://www.labradorvirtualmuseum.ca/english-inuttut.htm",
     "totalDictionaryEntries": len(data), "acts": len(acts),
-    "vocabPolicy": "Taught/tested vocabulary is NOUNS ONLY (see data/nouns.json). Verbs, actions, adjectives, and phrases are never surfaced as learnable words.",
+    "audience": ("Inuit youth (Nunatsiavut) who already have some existing knowledge of Inuttut and want "
+        "to strengthen everyday use of the language — not absolute beginners starting from zero."),
+    "goal": "Support learners up to roughly CEFR A2: simple, everyday exchanges on familiar topics.",
+    "vocabPolicy": "Taught/tested vocabulary in the current build is NOUNS ONLY (see data/nouns.json), a holdover from this app's earlier absolute-beginner design. data/phrases.json (see README Step 3c) is a first, unreviewed scaffold toward everyday verbs/phrases; it is not yet wired into the game.",
     "culturalCaveat": ("Vocabulary is from the Labrador Virtual Museum English-Inuttut Dictionary. The "
         "folktales are living Labrador Inuit cultural heritage; tales, retellings, framing, art, and audio "
         "should be reviewed with the Nunatsiavut Government and the Torngâsok Cultural Centre / Illusuak "

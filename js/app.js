@@ -121,7 +121,7 @@
     var hero = el("section", "hero-map"); hero.style.backgroundImage = "url('assets/bg/sky_road_stars.svg')";
     var ov = el("div", "hero-map-in");
     ov.appendChild(el("h1", null, "Inuttut Journey"));
-    ov.appendChild(el("p", "lede", "Walk a Labrador Inuit folktale in first person. Talk with the people you meet in <strong>Inuttut</strong>, learn their words, and win word-battles to bring back the light. Every word is real — from the Labrador Virtual Museum dictionary."));
+    ov.appendChild(el("p", "lede", "Already know some <strong>Inuttut</strong>? Walk a Labrador Inuit folktale in first person, talk with the people you meet, and win word-battles to keep your everyday words sharp. Built to help you use Inuttut more — not to start you from zero. Every word is real — from the Labrador Virtual Museum dictionary."));
     var learned = Object.keys(state.guide).filter(function (id) { return state.guide[id].correct > 0; }).length;
     var sr = el("div", "stat-row");
     [[state.level, "level"], [learned, "words learned"], [state.cards.length, "culture cards"], [state.battles, "battles won"]].forEach(function (s) { var d = el("div", "stat"); d.appendChild(el("b", null, String(s[0]))); d.appendChild(el("span", null, s[1])); sr.appendChild(d); });
@@ -508,7 +508,11 @@
     app.innerHTML = "";
     var c = el("section", "card");
     c.appendChild(el("h2", null, "About Inuttut Journey"));
-    c.appendChild(el("p", null, "A first-person visual-novel RPG for learning <strong>Inuttut</strong> (Labrador Inuit / Nunatsiavut). You live a folktale, talk with characters to learn words, and win word-battles to advance."));
+    c.appendChild(el("p", null, "A first-person visual-novel RPG for <strong>strengthening everyday use of Inuttut</strong> (Labrador Inuit / Nunatsiavut) — for youth who already have some existing knowledge of the language, working toward roughly CEFR A2 (simple, everyday exchanges), not absolute-beginner vocabulary drilling. You live a folktale, talk with characters to practice words, and win word-battles to advance."));
+    c.appendChild(el("h3", null, "Who this is for"));
+    c.appendChild(el("p", null, esc(META.audience || "Inuit youth who already know some Inuttut and want to use it more in everyday life.")));
+    c.appendChild(el("p", null, esc(META.goal || "Working toward roughly CEFR A2 — simple, everyday exchanges on familiar topics.") + " The goal is to co-design the content with Inuttut speakers and educators, not to hand down a finished product; see <span class='kbd'>docs/co-design-process.md</span> in the repo."));
+    c.appendChild(el("p", null, esc(META.vocabPolicy || "")));
     c.appendChild(el("h3", null, "Where the words come from"));
     c.appendChild(el("p", null, "Every word is extracted from the <a href='" + esc(META.sourceUrl || "#") + "' target='_blank' rel='noopener'>Labrador Virtual Museum English-Inuttut Dictionary</a> (" + (META.totalDictionaryEntries || DICT.length) + " entries). This is Inuttut — <em>not</em> Inuktitut; spelling follows the dictionary exactly, including mid-word capital <span class='kbd'>K</span> and circumflex vowels. All 30 story words were validated against the dictionary before use."));
     c.appendChild(el("h3", null, "Sound"));
